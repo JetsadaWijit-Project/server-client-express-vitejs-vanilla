@@ -30,8 +30,11 @@ docker compose up --build -d > "%LOG_PREFIX%-docker.log" 2>&1
 echo ========================================
 echo Capturing server and client logs...
 echo ========================================
-docker logs -f server > "%LOG_PREFIX%-server.log" 2>&1
-docker logs -f client > "%LOG_PREFIX%-client.log" 2>&1
+start /B cmd /c "docker logs server > \"%LOG_PREFIX%-server.log\" 2>&1"
+start /B cmd /c "docker logs client > \"%LOG_PREFIX%-client.log\" 2>&1"
+
+:: Optional delay to ensure Vite is ready
+timeout /t 5 > NUL
 
 echo ========================================
 echo Opening client in Chrome...
