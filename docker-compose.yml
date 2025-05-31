@@ -1,8 +1,6 @@
 services:
   server:
     container_name: server
-    command: >
-      sh -c "npm start"
     build: ./server
     ports:
       - "3000:3000"

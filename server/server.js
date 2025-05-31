@@ -21,9 +21,9 @@ app.post('/api/echo', (req, res) => {
   res.json({ received: req.body });
 });
 
-// Catch-all for undefined routes
-app.all('*', (req, res) => {
-  res.redirect('/');
+// Catch-all route to handle undefined routes
+app.use((req, res) => {
+  res.redirect("/");
 });
 
 app.listen(PORT, '0.0.0.0', () => {
