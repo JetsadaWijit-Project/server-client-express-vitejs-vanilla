@@ -26,13 +26,7 @@ docker compose down --rmi all --volumes
 echo ========================================
 echo Rebuilding and starting containers...
 echo ========================================
-docker compose up --build > "%LOG_PREFIX%-build.log" 2>&1
-
-echo ========================================
-echo Capturing server and client logs...
-echo ========================================
-docker logs server > "%LOG_PREFIX%-server.log" 2>&1
-docker logs client > "%LOG_PREFIX%-client.log" 2>&1
+docker compose up --build
 
 echo ========================================
 echo Opening client in Chrome...
