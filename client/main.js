@@ -1,3 +1,5 @@
+import './style.css';
+
 document.getElementById('getMessage').onclick = async () => {
   const res = await fetch('http://localhost:3000/api/message');
   const data = await res.json();
