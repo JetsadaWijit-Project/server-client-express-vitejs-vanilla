@@ -23,7 +23,7 @@ echo ========================================
 echo Rebuilding and starting containers in background...
 echo Log output: %LOG_FILE%
 echo ========================================
-docker compose up --build -d > "%LOG_FILE%" 2>&1
+docker compose up --build > "%LOG_FILE%" 2>&1
 
 echo ========================================
 echo Waiting for containers to start...
