@@ -32,3 +32,8 @@ echo Capturing server and client logs...
 echo ========================================
 docker logs -f server > "%LOG_PREFIX%-server.log" 2>&1
 docker logs -f client > "%LOG_PREFIX%-client.log" 2>&1
+
+echo ========================================
+echo Opening client in Chrome...
+echo ========================================
+start chrome http://localhost:5173
