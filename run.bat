@@ -5,6 +5,7 @@ if not exist logs mkdir logs
 :: Get timestamp in format yyyy-MM-dd-HH-mm-ss
 for /f %%i in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd-HH-mm-ss"') do set timestamp=%%i
 
+:: Set log prefix path
 set LOG_PREFIX=logs\%timestamp%
 
 echo ========================================
@@ -28,13 +29,15 @@ echo ========================================
 docker compose up --build -d > "%LOG_PREFIX%-docker.log" 2>&1
 
 echo ========================================
+echo Waiting for containers to start...
+echo ========================================
+timeout /t 5 > NUL
+
+echo ========================================
 echo Capturing server and client logs...
 echo ========================================
 start /B cmd /c "docker logs server > \"%LOG_PREFIX%-server.log\" 2>&1"
 start /B cmd /c "docker logs client > \"%LOG_PREFIX%-client.log\" 2>&1"
-
-:: Optional delay to ensure Vite is ready
-timeout /t 5 > NUL
 
 echo ========================================
 echo Opening client in Chrome...
