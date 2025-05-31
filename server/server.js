@@ -6,14 +6,24 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json()); // Enable JSON parsing
 
-// Example GET endpoint
+// GET /
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+// GET /api/message
 app.get('/api/message', (req, res) => {
   res.json({ message: 'Hello from Express!' });
 });
 
-// Example POST endpoint
+// POST /api/echo
 app.post('/api/echo', (req, res) => {
   res.json({ received: req.body });
+});
+
+// Catch-all for undefined routes
+app.all('*', (req, res) => {
+  res.redirect('/');
 });
 
 app.listen(PORT, '0.0.0.0', () => {
