@@ -24,20 +24,15 @@ echo ========================================
 docker compose down --rmi all --volumes
 
 echo ========================================
-echo Rebuilding and starting containers in background...
+echo Rebuilding and starting containers...
 echo ========================================
-docker compose up --build -d > "%LOG_PREFIX%-docker.log" 2>&1
-
-echo ========================================
-echo Waiting for containers to start...
-echo ========================================
-timeout /t 5 > NUL
+docker compose up --build > "%LOG_PREFIX%-build.log" 2>&1
 
 echo ========================================
 echo Capturing server and client logs...
 echo ========================================
-start /B cmd /c "docker logs server > \"%LOG_PREFIX%-server.log\" 2>&1"
-start /B cmd /c "docker logs client > \"%LOG_PREFIX%-client.log\" 2>&1"
+docker logs server > "%LOG_PREFIX%-server.log" 2>&1
+docker logs client > "%LOG_PREFIX%-client.log" 2>&1
 
 echo ========================================
 echo Opening client in Chrome...
